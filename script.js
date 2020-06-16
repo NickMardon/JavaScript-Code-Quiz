@@ -95,23 +95,38 @@ function generateQuestion(){
     answerBtn2.innerHTML = questionArr[index].answers[2];
     answerBtn3.innerHTML = questionArr[index].answers[3];
     
-        // add event listeners to answers
-        answerBtn0.addEventListener("click", goToNextQuestion);
-        answerBtn1.addEventListener("click", goToNextQuestion);
-        answerBtn2.addEventListener("click", goToNextQuestion);
-        answerBtn3.addEventListener("click", goToNextQuestion);
-    
-    function goToNextQuestion(userChoice){
-        correctAnswer = questionArr[index].correct;
-        if(userChoice === correctAnswer){
-            score++;
-            index++;
-        } else if(userChoice !== correctAnswer){
-            //reduce timer
-            index++
-        }
-    }
     }
 }
+
+function goToNextQuestion(userChoice){
+    correctAnswer = questionArr[index].correct;
+    if(userChoice === correctAnswer){
+        score++;
+        index++;
+    } else if(userChoice !== correctAnswer){
+        //reduce timer
+        index++
+    }
+}
+
+
+function answerClickSetUp() {
+    //Answer Buttons
+    var answerButtons = document.querySelectorAll(".answerBtn");
+    var answerBtn0 = document.querySelector("#answerBtn0");
+    var answerBtn1 = document.querySelector("#answerBtn1");
+    var answerBtn2 = document.querySelector("#answerBtn2");
+    var answerBtn3 = document.querySelector("#answerBtn3");
+
+    // add event listeners to answers
+    answerBtn0.addEventListener("click", function() {goToNextQuestion(answerBtn0.innerHTML)});
+    answerBtn1.addEventListener("click", function() {goToNextQuestion(answerBtn1.innerHTML)});
+    answerBtn2.addEventListener("click", function() {goToNextQuestion(answerBtn2.innerHTML)});
+    answerBtn3.addEventListener("click", function() {goToNextQuestion(answerBtn3.innerHTML)});
+ 
+  }
+  answerClickSetUp();
+
+        
 
 
