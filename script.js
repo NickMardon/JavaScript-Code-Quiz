@@ -71,6 +71,7 @@ var timer = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
 var startBtn = document.querySelector("#startBtn");
 //Answer Buttons
+var answerButtons = document.querySelectorAll(".answerBtn");
 var answerBtn0 = document.querySelector("#answerBtn0");
 var answerBtn1 = document.querySelector("#answerBtn1");
 var answerBtn2 = document.querySelector("#answerBtn2");
@@ -84,14 +85,33 @@ var index = 0;
 startBtn.addEventListener("click", generateQuestion)
 
 function generateQuestion(){
-//display question on page
+    startBtn.style.display = "none";
+    if(index<questionArr.length){
+    //display question on page
     questionText.innerHTML = questionArr[index].question;
-    index++;
-//display answers in coresponding buttons
+    //display answers in coresponding buttons
     answerBtn0.innerHTML = questionArr[index].answers[0];
     answerBtn1.innerHTML = questionArr[index].answers[1];
     answerBtn2.innerHTML = questionArr[index].answers[2];
     answerBtn3.innerHTML = questionArr[index].answers[3];
+    
+        // add event listeners to answers
+        answerBtn0.addEventListener("click", goToNextQuestion);
+        answerBtn1.addEventListener("click", goToNextQuestion);
+        answerBtn2.addEventListener("click", goToNextQuestion);
+        answerBtn3.addEventListener("click", goToNextQuestion);
+    
+    function goToNextQuestion(userChoice){
+        correctAnswer = questionArr[index].correct;
+        if(userChoice === correctAnswer){
+            score++;
+            index++;
+        } else if(userChoice !== correctAnswer){
+            //reduce timer
+            index++
+        }
+    }
+    }
 }
 
 

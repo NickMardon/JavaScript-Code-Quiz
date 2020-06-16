@@ -3,12 +3,18 @@ main {
 }
 
 header {
-    font-size: 35px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    justify-content: space-between;
+}
+
+#highScore, #appTitle, #timer {
+    padding: 8px;
 }
 
 .answerBtn {
-    /* display: none; */
+    /* visibility: hidden; */
+    margin: 10px;
+    padding: 10px;
 }
 
 #startBtn {
