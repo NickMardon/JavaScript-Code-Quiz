@@ -67,17 +67,18 @@ var questionArr = [
 ]
 //Defining DOM variables
 var questionText = document.querySelector("#question");
-
-var answerBtns = document.querySelector("answerBtn");
-  
 var timer = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
 var startBtn = document.querySelector("#startBtn");
-
+//Answer Buttons
+var answerBtn0 = document.querySelector("#answerBtn0");
+var answerBtn1 = document.querySelector("#answerBtn1");
+var answerBtn2 = document.querySelector("#answerBtn2");
+var answerBtn3 = document.querySelector("#answerBtn3");
 //other variables
 var score = 0;
 var index = 0;
-var answerIndex = 0;
+// var answerIndex = 0;
 
 //add click listener to start button to start quiz
 startBtn.addEventListener("click", generateQuestion)
@@ -87,9 +88,10 @@ function generateQuestion(){
     questionText.innerHTML = questionArr[index].question;
     index++;
 //display answers in coresponding buttons
-    for(let i = 0; i <answerIndex; i++){
-
-    }
+    answerBtn0.innerHTML = questionArr[index].answers[0];
+    answerBtn1.innerHTML = questionArr[index].answers[1];
+    answerBtn2.innerHTML = questionArr[index].answers[2];
+    answerBtn3.innerHTML = questionArr[index].answers[3];
 }
 
 
