@@ -15,48 +15,81 @@
 
 
 //Array of questions and answers 
-//right answers are in index 1
 var questionArr = [
     {question: "How do you write an IF statement in JavaScript?",
-    answers: ["if = 5 then", "if(i==5)","if i == 5 then", "if i = 5"]
+    answers: ["if = 5 then","if i == 5 then", "if i = 5", "if(i==5)"],
+    correct: "if(i==5)"
     },
     {question: "How does a WHILE loop start?",
-    answers: ["while i < 5", "while (i<5)", "while(i)<5", "(while i < 5)"]
+    answers: ["while i < 5", "while (i<5)", "while(i)<5", "(while i < 5)"],
+    correct: "while (i<5)"
     },
     {question: "What HTML tag links JavaScript to HTML?",
-    answers: ["<JavaScript>", "<script>", "<script.js>", "<Java>"]
+    answers: ["<script.js>", "<JavaScript>", "<script>", "<Java>"],
+    correct: "<script>"
     },
     {question: "Which of the following is NOT part of a for loop",
-    answers: ["variable", "boolean", "condition", "increment"]
+    answers: ["variable", "boolean", "condition", "increment"],
+    correct: "boolean"
     },
     {question: "How do you test for two conditions",
-    answers: ["while i < 5 || i > 9", "while (i < 5 && i > 9)", "while [i<5 && i >9]", "while(5 < i < 9)"]
+    answers: ["while i < 5 || i > 9", "while (i < 5 && i > 9)", "while [i<5 && i >9]", "while(5 < i < 9)"],
+    correct: "while (i < 5 && i > 9)"
     },
     {question: "Which of the following is NOT a JavaScript framework?",
-    answers: ["React.js", "Go.js", "Vue.js", "Node.js"]
+    answers: ["Node.js", "React.js", "Go.js", "Vue.js"],
+    correct: "Go.js"
     },
     {question: "How do you add a comment in JavaScript?",
-    answers: ["/*This is my comment*/", "//This is my comment", "<!--This is my comment-->", "!this is my comment!"]
+    answers: ["//This is my comment", "/*This is my comment*/", "<!--This is my comment-->", "!this is my comment!"],
+    correct: "//This is my comment"
     },
     {question: "How do you write an Array in JavaScript?",
-    answers: ["let arr = ()", "let arr = []", "let arr = ()", "let arr([])"]
+    answers: ["let arr = ()", "let arr = []", "let arr = ()", "let arr([])"],
+    correct: "let arr = []"
     },
     {question: "JavaScript and Java...",
-    answers: ["Are the Same", "Are different programming languages", "Are built off of eachother", "were created by the same person"]
+    answers: ["Are the Same", "Are built off of eachother", "were created by the same person", "Are different programming languages"],
+    correct: "Are different programming languages"
     },
     {question: "Which of the following type of variable is visible everywhere in your JavaScript code?",
-    answers: ["Local Variable", "Global Variable", "Both", "Neither"]
+    answers: ["Local Variable", "Global Variable", "Both", "Neither"],
+    correct: "Global Variable" 
     },
     {question: "Which of the following is a JavaScript method?",
-    answers: ["let", ".toUpperCase", "break", ".Math"]
+    answers: [".toUpperCase","let", "break", ".Math"],
+    correct: ".toUpperCase"
     },
     {question: "Which of the following functions turns a string into an array?",
-    answers: [".slice()", ".split()", ".parse()", ".stringify()"]
+    answers: [".slice()", ".parse()", ".stringify()", ".split()"],
+    correct: ".split()"
     },
 ]
 //Defining DOM variables
 var questionText = document.querySelector("#question");
-var answerBtns = document.querySelectorAll("answerBtn");
+
+var answerBtns = document.querySelector("answerBtn");
+  
 var timer = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
+var startBtn = document.querySelector("#startBtn");
+
+//other variables
 var score = 0;
+var index = 0;
+var answerIndex = 0;
+
+//add click listener to start button to start quiz
+startBtn.addEventListener("click", generateQuestion)
+
+function generateQuestion(){
+//display question on page
+    questionText.innerHTML = questionArr[index].question;
+    index++;
+//display answers in coresponding buttons
+    for(let i = 0; i <answerIndex; i++){
+
+    }
+}
+
+
