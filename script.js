@@ -67,7 +67,7 @@ var questionArr = [
 ]
 //Defining DOM variables
 var questionText = document.querySelector("#question");
-var timer = document.querySelector("#timerSpan");
+var timerDisplay = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
 var startBtn = document.querySelector("#startBtn");
 //Answer Buttons
@@ -79,12 +79,14 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 //other variables
 var score = 0;
 var index = 0;
+var timeLeft = 90;
 // var answerIndex = 0;
 
 //add click listener to start button to start quiz
 startBtn.addEventListener("click", generateQuestion)
 
 function generateQuestion(){
+    startTimer();
     startBtn.style.display = "none";
     if(index<questionArr.length){
     //display question on page
@@ -94,18 +96,23 @@ function generateQuestion(){
     answerBtn1.innerHTML = questionArr[index].answers[1];
     answerBtn2.innerHTML = questionArr[index].answers[2];
     answerBtn3.innerHTML = questionArr[index].answers[3];
-    
+    //call the answer click function
+    answerClickSetUp();
     }
+    // else dislay game over
 }
 
 function goToNextQuestion(userChoice){
-    correctAnswer = questionArr[index].correct;
+    console.log("goToNextQuestion has been called");
+   let correctAnswer = questionArr[index].correct;
     if(userChoice === correctAnswer){
         score++;
         index++;
+        generateQuestion();
     } else if(userChoice !== correctAnswer){
         //reduce timer
         index++
+        generateQuestion();
     }
 }
 
@@ -125,8 +132,16 @@ function answerClickSetUp() {
     answerBtn3.addEventListener("click", function() {goToNextQuestion(answerBtn3.innerHTML)});
  
   }
-  answerClickSetUp();
 
+  function startTimer() {
+    timer = setInterval(function() {
+      timerDisplay.textContent(timeLeft);
+      timeLeft--;
+      if (timeLeft <= -1) {
+        clearInterval(timer);
+      }
+    }, 1000);
+  }
         
 
 
