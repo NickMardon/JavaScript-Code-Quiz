@@ -8,17 +8,21 @@ var submitInput = document.querySelector("#submitInput");
 var submitBtn = document.querySelector("#submitBtn");
 var tryAgain = document.querySelector("#tryAgain");
 var rightOrWrong = document.querySelector(".wrongCorrect");
+var highScoresList = document.querySelector(".highscoreList");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
 var answerBtn1 = document.querySelector("#answerBtn1");
 var answerBtn2 = document.querySelector("#answerBtn2");
 var answerBtn3 = document.querySelector("#answerBtn3");
-//other variables
+//counter variables
 var score = 0;
 var index = 0;
 var timeLeft = 90;
+//user scores
 var userArray = JSON.parse(localStorage.getItem("userScore")) || [];
+// var userArray = [];
+var savedScores = JSON.parse(localStorage.getItem("userScore")) || [];
 
 
 //add click listener to start button to start quiz
@@ -116,21 +120,22 @@ function resetGame(){
 
 }
 
-
 //add click listener for submit button
 submitBtn.addEventListener("click", saveScores);
-
 
 //Save the users score to local storage
 function saveScores() {
     var scoreName = submitInput.value;
     console.log(scoreName);
-    var highScores = scoreName + " : " + score;
-    userArray.push(highScores);
+    var scoreObj = {};
+    scoreObj["name"]=scoreName;
+    scoreObj["score"]=score;
+    // var highScores = scoreName + " : " + score;
+    userArray.push(scoreObj);
   
     //sort method displays higher scores first
   
-    userArray.sort(function(a, b){return b-a}); 
+    userArray.sort(function(a, b){return b.score-a}); 
     // get previous scores from local storage 
     //add scores to userArray
     localStorage.setItem("userScore", JSON.stringify(userArray));
@@ -138,23 +143,20 @@ function saveScores() {
     window.location.href = "highScores.html";
   }
 
-  //load data from local storage highScores 
-  function loadScores() {
-    var savedScores = localStorage.getItem("userScore");
-    var allScores = JSON.parse(savedScores);
-    if (allScores != null) {
-        userArray = allScores;
-        }
-      }
+  // //load data from local storage highScores 
+  // function loadScores() {
+  //       //get score object from local storage
+  //     //  savedScores = localStorage.getItem("userScore");
+  //       console.log(savedScore);
+  //       var allScores = JSON.parse(savedScores);
+    
+  //   }
 
-   //create a new list item for each score and append to ol 
+  //  create a new list item for each score and append to ol 
 function showScores() {
     for (i = 0; i < userArray.length; i++) {
-        
-    //   newInitials = $("<li></li>").append(initialsArray[i]);
-    //   $("#scoreList").append(newInitials);    
+        var displayUserScore = document.createElement("li");
+        displayUserScore.textContent = userArray[i];
+        highScoresList.appendChild(displayUserScore);  
     }
   }
-        
-
-
