@@ -6,6 +6,8 @@ var startBtn = document.querySelector("#startBtn");
 var submitBox = document.querySelector(".submitBox")
 var submitInput = document.querySelector("#submitInput");
 var submitBtn = document.querySelector("#submitBtn");
+var tryAgain = document.querySelector("#tryAgain");
+var rightOrWrong = document.querySelector(".wrongCorrect");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
@@ -24,7 +26,7 @@ startBtn.addEventListener("click", startQuiz)
 // Start button disapears, questions and answers display on HTML, Timer starts
 function startQuiz(){
     startTimer();
-    startBtn.classList.add("hide")
+    startBtn.classList.add("hide");
     answerButtons.classList.remove("hide");
     generateQuestion();
 }
@@ -40,16 +42,17 @@ function startTimer() {
       }
     }, 1000);
   }
-
+//Game Over Function
   function gameOver(){
     timerDisplay.innerHTML = 0;
     clearInterval(timer);
     submitBox.classList.remove("hide");
-    questionText.classList.add("hide");
+    questionText.textContent = "Hit the button to start";
     answerButtons.classList.add("hide");
+    rightOrWrong.classList.add("hide");
   }
 
-
+//Generate questions on to HTML
 function generateQuestion(){
     // debugger;
     if(index<questionArr.length){
@@ -63,10 +66,7 @@ function generateQuestion(){
     } else if(index >= questionArr.length){
         gameOver();
     }
-
-    // else dislay game over
 }
-// function answerClickSetUp() {
     //Answer Buttons
     var answerBtn0 = document.querySelector("#answerBtn0");
     var answerBtn1 = document.querySelector("#answerBtn1");
@@ -78,7 +78,7 @@ function generateQuestion(){
     answerBtn1.addEventListener("click", function() {goToNextQuestion(answerBtn1.innerHTML)});
     answerBtn2.addEventListener("click", function() {goToNextQuestion(answerBtn2.innerHTML)});
     answerBtn3.addEventListener("click", function() {goToNextQuestion(answerBtn3.innerHTML)});
-//   }
+
 
 //Checks if answer was right and moves to next question
 function goToNextQuestion(userChoice){
@@ -103,6 +103,20 @@ function goToNextQuestion(userChoice){
     }
 }
 
+//Try again button click listener 
+tryAgain.addEventListener("click", resetGame);
+
+//resetGame function
+function resetGame(){
+    index = 0;
+    score = 0;
+    userArray = [];
+    submitBox.classList.add("hide");
+    startBtn.classList.remove("hide");
+
+}
+
+
 //add click listener for submit button
 submitBtn.addEventListener("click", saveScores);
 
@@ -114,10 +128,10 @@ function saveScores() {
     var highScores = scoreName + " : " + score;
     userArray.push(highScores);
   
-    // + add sort method to the array to show higher score first
+    //sort method displays higher scores first
   
     userArray.sort(function(a, b){return b-a}); 
-    localStorage.setItem("listOfItems", JSON.stringify(userArray));
+    localStorage.setItem("userScore", JSON.stringify(userArray));
   }
 
 
