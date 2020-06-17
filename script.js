@@ -47,7 +47,7 @@ function startTimer() {
     timerDisplay.innerHTML = 0;
     clearInterval(timer);
     submitBox.classList.remove("hide");
-    questionText.textContent = "Hit the button to start";
+    questionText.classList.add("hide");
     answerButtons.classList.add("hide");
     rightOrWrong.classList.add("hide");
   }
@@ -110,6 +110,7 @@ tryAgain.addEventListener("click", resetGame);
 function resetGame(){
     index = 0;
     score = 0;
+    questionText.innerHTML = "Click the start button to begin the quiz"
     submitBox.classList.add("hide");
     startBtn.classList.remove("hide");
 
@@ -137,7 +138,23 @@ function saveScores() {
     window.location.href = "highScores.html";
   }
 
+  //load data from local storage highScores 
+  function loadScores() {
+    var savedScores = localStorage.getItem("userScore");
+    var allScores = JSON.parse(savedScores);
+    if (allScores != null) {
+        userArray = allScores;
+        }
+      }
 
+   //create a new list item for each score and append to ol 
+function showScores() {
+    for (i = 0; i < userArray.length; i++) {
+        
+    //   newInitials = $("<li></li>").append(initialsArray[i]);
+    //   $("#scoreList").append(newInitials);    
+    }
+  }
         
 
 
