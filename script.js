@@ -18,7 +18,7 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 var score = 0;
 var index = 0;
 var timeLeft = 90;
-var userArray = [];
+var userArray = JSON.parse(localStorage.getItem("userScore")) || [];
 
 
 //add click listener to start button to start quiz
@@ -110,7 +110,6 @@ tryAgain.addEventListener("click", resetGame);
 function resetGame(){
     index = 0;
     score = 0;
-    userArray = [];
     submitBox.classList.add("hide");
     startBtn.classList.remove("hide");
 
@@ -131,7 +130,11 @@ function saveScores() {
     //sort method displays higher scores first
   
     userArray.sort(function(a, b){return b-a}); 
+    // get previous scores from local storage 
+    //add scores to userArray
     localStorage.setItem("userScore", JSON.stringify(userArray));
+    //redirect goes here
+    window.location.href = "highScores.html";
   }
 
 
