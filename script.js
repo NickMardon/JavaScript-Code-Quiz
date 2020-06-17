@@ -31,18 +31,18 @@ var questionArr = [
     answers: ["&lt;script.js&gt;", "&lt;JavaScript&gt;", "&lt;script&gt;", "&lt;Java&gt;"],
     correct: "&lt;script.js&gt;"
     },
-    {question: "How do you test for two conditions",
-    answers: ["while i &lt; 5 || i &gt; 9", "while (i &lt; 5 && i &gt; 9)", "while [i &lt; 5 && i &gt; 9]", "while(5 &lt; i &lt; 9)"],
-    correct: "while (i &lt; 5 && i &gt; 9)"
-    },
+    // {question: "How do you test for two conditions",
+    // answers: ["while i &lt; 5 || i &gt; 9", "while (i &lt; 5 && i &gt; 9)", "while [i &lt; 5 && i &gt; 9]", "while(5 &lt; i &lt; 9)"],
+    // correct: "while (i &lt; 5 && i &gt; 9)"
+    // },
     {question: "Which of the following is NOT a JavaScript framework?",
     answers: ["Node.js", "React.js", "Go.js", "Vue.js"],
     correct: "Go.js"
     },
-    {question: "How do you add a comment in JavaScript?",
-    answers: ["//This is my comment", "/*This is my comment*/", "<!--This is my comment-->", "!this is my comment!"],
-    correct: "//This is my comment"
-    },
+    // {question: "How do you add a comment in JavaScript?",
+    // answers: ["//This is my comment", "/*This is my comment*/", "<!--This is my comment-->", "!this is my comment!"],
+    // correct: "//This is my comment"
+    // },
     {question: "How do you write an Array in JavaScript?",
     answers: ["let arr = ()", "let arr = []", "let arr = ()", "let arr([])"],
     correct: "let arr = []"
