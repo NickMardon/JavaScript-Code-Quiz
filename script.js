@@ -70,6 +70,7 @@ var questionText = document.querySelector("#question");
 var timerDisplay = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
 var startBtn = document.querySelector("#startBtn");
+var submitBox = document.querySelector(".submitBox")
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
@@ -79,7 +80,7 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 //other variables
 var score = 0;
 var index = 0;
-var timeLeft = 90;
+var timeLeft = 10;
 // let correctAnswer = questionArr[index].correct;
 // var answerIndex = 0;
 
@@ -98,14 +99,22 @@ function startTimer() {
     timer = setInterval(function() {
       timerDisplay.innerHTML = timeLeft;
       timeLeft--;
+      //if the user runs out of time
       if (timeLeft < 0) {
         //go to high scores
         function myStopFunction() {
         clearInterval(timer);
+        gameOver();
     }
         myStopFunction();   
       }
     }, 1000);
+  }
+
+  function gameOver(){
+    submitBox.classList.remove("hide");
+    questionText.classList.add("hide");
+    answerButtons.classList.add("hide");
   }
 
 
@@ -138,7 +147,7 @@ function generateQuestion(){
 
 //Checks if answer was right and moves to next question
 function goToNextQuestion(userChoice){
-    debugger;
+    // debugger;
     console.log("goToNextQuestion has been called");
     var correctAnswer = questionArr[index].correct;
     if(userChoice == correctAnswer){
@@ -157,6 +166,7 @@ function goToNextQuestion(userChoice){
         console.log("index is " + index);
         generateQuestion();
     }
+
 }
 
 
