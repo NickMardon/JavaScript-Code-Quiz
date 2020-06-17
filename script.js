@@ -13,7 +13,6 @@
 //TODO: when the game is over create input for user to enter score
 //TODO: use local storage to save user scores
 
-
 //Array of questions and answers 
 var questionArr = [
     {question: "How do you write an IF statement in JavaScript?",
@@ -21,20 +20,20 @@ var questionArr = [
     correct: "if(i==5)"
     },
     {question: "How does a WHILE loop start?",
-    answers: ["while i < 5", "while (i<5)", "while(i)<5", "(while i < 5)"],
-    correct: "while (i<5)"
-    },
-    {question: "What HTML tag links JavaScript to HTML?",
-    answers: ["<script.js>", "<JavaScript>", "<script>", "<Java>"],
-    correct: "<script>"
+    answers: ["while i &lt; 5", "while (i &lt; 5)", "while(i) &lt; 5", "(while i &lt; 5)"],
+    correct: "while (i &lt; 5)"
     },
     {question: "Which of the following is NOT part of a for loop",
-    answers: ["variable", "boolean", "condition", "increment"],
+    answers: ["variable", "condition", "increment", "boolean"],
     correct: "boolean"
     },
+    {question: "What HTML tag links JavaScript to HTML?",
+    answers: ["&lt;script.js&gt;", "&lt;JavaScript&gt;", "&lt;script&gt;", "&lt;Java&gt;"],
+    correct: "&lt;script.js&gt;"
+    },
     {question: "How do you test for two conditions",
-    answers: ["while i < 5 || i > 9", "while (i < 5 && i > 9)", "while [i<5 && i >9]", "while(5 < i < 9)"],
-    correct: "while (i < 5 && i > 9)"
+    answers: ["while i &lt; 5 || i &gt; 9", "while (i &lt; 5 && i &gt; 9)", "while [i &lt; 5 && i &gt; 9]", "while(5 &lt; i &lt; 9)"],
+    correct: "while (i &lt; 5 && i &gt; 9)"
     },
     {question: "Which of the following is NOT a JavaScript framework?",
     answers: ["Node.js", "React.js", "Go.js", "Vue.js"],
@@ -65,6 +64,7 @@ var questionArr = [
     correct: ".split()"
     },
 ]
+
 //Defining DOM variables
 var questionText = document.querySelector("#question");
 var timerDisplay = document.querySelector("#timerSpan");
@@ -80,6 +80,7 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 var score = 0;
 var index = 0;
 var timeLeft = 90;
+// let correctAnswer = questionArr[index].correct;
 // var answerIndex = 0;
 
 //add click listener to start button to start quiz
@@ -87,7 +88,7 @@ startBtn.addEventListener("click", startQuiz)
 // Start button disapears, questions and answers display on HTML, Timer starts
 function startQuiz(){
     startTimer();
-    startBtn.style.display = "none";
+    startBtn.classList.add("hide")
     answerButtons.classList.remove("hide");
     generateQuestion();
 }
@@ -118,12 +119,10 @@ function generateQuestion(){
     answerBtn1.innerHTML = questionArr[index].answers[1];
     answerBtn2.innerHTML = questionArr[index].answers[2];
     answerBtn3.innerHTML = questionArr[index].answers[3];
-    //call the answer click function
-    answerClickSetUp();
     }
     // else dislay game over
 }
-function answerClickSetUp() {
+// function answerClickSetUp() {
     //Answer Buttons
     var answerBtn0 = document.querySelector("#answerBtn0");
     var answerBtn1 = document.querySelector("#answerBtn1");
@@ -135,20 +134,27 @@ function answerClickSetUp() {
     answerBtn1.addEventListener("click", function() {goToNextQuestion(answerBtn1.innerHTML)});
     answerBtn2.addEventListener("click", function() {goToNextQuestion(answerBtn2.innerHTML)});
     answerBtn3.addEventListener("click", function() {goToNextQuestion(answerBtn3.innerHTML)});
- 
-  }
+//   }
 
 //Checks if answer was right and moves to next question
 function goToNextQuestion(userChoice){
+    debugger;
     console.log("goToNextQuestion has been called");
-   let correctAnswer = questionArr[index].correct;
-    if(userChoice === correctAnswer){
-        score++;
-        index++;
+    var correctAnswer = questionArr[index].correct;
+    if(userChoice == correctAnswer){
+        confirmAnswer.textContent = "Correct";
+        score = score + 1;
+        console.log("score is " + score);
+        index = index + 1;
+        console.log("index is " + index);
         generateQuestion();
-    } else if(userChoice !== correctAnswer){
-        timeLeft = timeLeft - 5;
-        index++
+    } 
+    
+    if(userChoice !== correctAnswer){
+        confirmAnswer.textContent = "False";
+        // timeLeft = timeLeft - 5;
+        index = index + 1;
+        console.log("index is " + index);
         generateQuestion();
     }
 }
