@@ -71,7 +71,7 @@ var timerDisplay = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
 var startBtn = document.querySelector("#startBtn");
 //Answer Buttons
-var answerButtons = document.querySelectorAll(".answerBtn");
+var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
 var answerBtn1 = document.querySelector("#answerBtn1");
 var answerBtn2 = document.querySelector("#answerBtn2");
@@ -83,11 +83,33 @@ var timeLeft = 90;
 // var answerIndex = 0;
 
 //add click listener to start button to start quiz
-startBtn.addEventListener("click", generateQuestion)
-
-function generateQuestion(){
+startBtn.addEventListener("click", startQuiz)
+// Start button disapears, questions and answers display on HTML, Timer starts
+function startQuiz(){
     startTimer();
     startBtn.style.display = "none";
+    answerButtons.classList.remove("hide");
+    generateQuestion();
+}
+
+//Start timer 
+function startTimer() {
+    timer = setInterval(function() {
+      timerDisplay.innerHTML = timeLeft;
+      timeLeft--;
+      if (timeLeft < 0) {
+        //go to high scores
+        function myStopFunction() {
+        clearInterval(timer);
+    }
+        myStopFunction();   
+      }
+    }, 1000);
+  }
+
+
+function generateQuestion(){
+    // debugger;
     if(index<questionArr.length){
     //display question on page
     questionText.innerHTML = questionArr[index].question;
@@ -101,25 +123,8 @@ function generateQuestion(){
     }
     // else dislay game over
 }
-
-function goToNextQuestion(userChoice){
-    console.log("goToNextQuestion has been called");
-   let correctAnswer = questionArr[index].correct;
-    if(userChoice === correctAnswer){
-        score++;
-        index++;
-        generateQuestion();
-    } else if(userChoice !== correctAnswer){
-        //reduce timer
-        index++
-        generateQuestion();
-    }
-}
-
-
 function answerClickSetUp() {
     //Answer Buttons
-    var answerButtons = document.querySelectorAll(".answerBtn");
     var answerBtn0 = document.querySelector("#answerBtn0");
     var answerBtn1 = document.querySelector("#answerBtn1");
     var answerBtn2 = document.querySelector("#answerBtn2");
@@ -133,15 +138,22 @@ function answerClickSetUp() {
  
   }
 
-  function startTimer() {
-    timer = setInterval(function() {
-      timerDisplay.textContent(timeLeft);
-      timeLeft--;
-      if (timeLeft <= -1) {
-        clearInterval(timer);
-      }
-    }, 1000);
-  }
+//Checks if answer was right and moves to next question
+function goToNextQuestion(userChoice){
+    console.log("goToNextQuestion has been called");
+   let correctAnswer = questionArr[index].correct;
+    if(userChoice === correctAnswer){
+        score++;
+        index++;
+        generateQuestion();
+    } else if(userChoice !== correctAnswer){
+        timeLeft = timeLeft - 5;
+        index++
+        generateQuestion();
+    }
+}
+
+
         
 
 

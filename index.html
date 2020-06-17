@@ -15,15 +15,20 @@
     <main class="quizBox">
         <h2 id="question">Hit the button to start</h2>
         <button id="startBtn">Start Quiz</button>
-        <div class="answers">
+        <div class="answers hide">
             <button id="answerBtn0" class="answerBtn"></button>
             <button id="answerBtn1" class="answerBtn"></button>
             <button id="answerBtn2" class="answerBtn"></button>
             <button id="answerBtn3" class="answerBtn"></button>
         </div>
+        <!--Display right or wrong-->
         <div class="wrongCorrect">
             <hr>
             <h3 class="confirmAnswer"></h3>
+        </div>
+        <div class="submitBox hide">
+            <input type="text" value="name" placeholder="Write your initials">
+            <button id="submitBtn" type="submit">Submit</button>
         </div>
     </main>
 
