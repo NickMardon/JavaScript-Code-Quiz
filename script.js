@@ -4,6 +4,8 @@ var timerDisplay = document.querySelector("#timerSpan");
 var confirmAnswer = document.querySelector(".confirmAnswer");
 var startBtn = document.querySelector("#startBtn");
 var submitBox = document.querySelector(".submitBox")
+var submitInput = document.querySelector("#submitInput");
+var submitBtn = document.querySelector("#submitBtn");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
@@ -14,7 +16,7 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 var score = 0;
 var index = 0;
 var timeLeft = 90;
-var initialsArray = [];
+var userArray = [];
 
 
 //add click listener to start button to start quiz
@@ -100,6 +102,23 @@ function goToNextQuestion(userChoice){
         generateQuestion();
     }
 }
+
+//add click listener for submit button
+submitBtn.addEventListener("click", saveScores);
+
+
+//Save the users score to local storage
+function saveScores() {
+    var scoreName = submitInput.value;
+    console.log(scoreName);
+    var highScores = scoreName + " : " + score;
+    userArray.push(highScores);
+  
+    // + add sort method to the array to show higher score first
+  
+    userArray.sort(function(a, b){return b-a}); 
+    localStorage.setItem("listOfItems", JSON.stringify(userArray));
+  }
 
 
         
