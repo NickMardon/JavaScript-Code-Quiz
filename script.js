@@ -14,6 +14,7 @@ var answerBtn3 = document.querySelector("#answerBtn3");
 var score = 0;
 var index = 0;
 var timeLeft = 90;
+var initialsArray = [];
 
 
 //add click listener to start button to start quiz
@@ -33,17 +34,14 @@ function startTimer() {
       timeLeft--;
       //if the user runs out of time
       if (timeLeft < 0) {
-        //go to high scores
-        function myStopFunction() {
-        clearInterval(timer);
         gameOver();
-    }
-        myStopFunction();   
       }
     }, 1000);
   }
 
   function gameOver(){
+    timerDisplay.innerHTML = 0;
+    clearInterval(timer);
     submitBox.classList.remove("hide");
     questionText.classList.add("hide");
     answerButtons.classList.add("hide");
@@ -82,7 +80,7 @@ function generateQuestion(){
 
 //Checks if answer was right and moves to next question
 function goToNextQuestion(userChoice){
-    debugger;
+    // debugger;
     console.log("goToNextQuestion has been called");
     var correctAnswer = questionArr[index].correct;
     if(userChoice == correctAnswer){
