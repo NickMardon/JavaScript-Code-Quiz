@@ -9,6 +9,7 @@ var submitBtn = document.querySelector("#submitBtn");
 var tryAgain = document.querySelector("#tryAgain");
 var rightOrWrong = document.querySelector(".wrongCorrect");
 var highScoresList = document.querySelector(".highscoreList");
+var showHighScore = document.querySelector("#showHighScores");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
@@ -24,9 +25,12 @@ var userArray = JSON.parse(localStorage.getItem("userScore")) || [];
 // var userArray = [];
 var savedScores = JSON.parse(localStorage.getItem("userScore")) || [];
 
+var displayUserScore;
+var displayLi;
+
 
 //add click listener to start button to start quiz
-startBtn.addEventListener("click", startQuiz)
+startBtn.addEventListener("click", startQuiz);
 // Start button disapears, questions and answers display on HTML, Timer starts
 function startQuiz(){
     startTimer();
@@ -123,6 +127,10 @@ function resetGame(){
 //add click listener for submit button
 submitBtn.addEventListener("click", saveScores);
 
+if(submitBtn.clicked === true){
+  showScores();
+}
+
 //Save the users score to local storage
 function saveScores() {
     var scoreName = submitInput.value;
@@ -132,12 +140,10 @@ function saveScores() {
     scoreObj["score"]=score;
     // var highScores = scoreName + " : " + score;
     userArray.push(scoreObj);
-  
-    //sort method displays higher scores first
-  
-    userArray.sort(function(a, b){return b.score-a}); 
-    // get previous scores from local storage 
-    //add scores to userArray
+
+    //sort scores from high to low before saving
+    userArray.sort(function(a, b){return b.score-a.score}); 
+    //save the objects in userArray into local storage
     localStorage.setItem("userScore", JSON.stringify(userArray));
     //redirect goes here
     window.location.href = "highScores.html";
@@ -152,11 +158,17 @@ function saveScores() {
     
   //   }
 
+  //click listener to show high scores button
+  // showHighScore.addEventListener("click", showScores)
+
   //  create a new list item for each score and append to ol 
 function showScores() {
     for (i = 0; i < userArray.length; i++) {
         var displayUserScore = document.createElement("li");
-        displayUserScore.textContent = userArray[i];
+        displayLi = `${userArray[i].name}-----${userArray[i].score}`;
+        displayUserScore.innerHTML = displayLi;
         highScoresList.appendChild(displayUserScore);  
     }
   }
+
+  
