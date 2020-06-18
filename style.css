@@ -7,13 +7,35 @@ header {
     justify-content: space-between;
 }
 
-#highScore, #appTitle, #timer {
-    padding: 8px;
+body {
+    background-color: #F2F2F2; 
+}
+
+#highScore {
+    padding-top: 0;
+}
+
+#startBtn {
+    background-color: #2DCA56;
+    border-radius: 20px;
+    padding: 10px;
+    font-weight: 600;
+}
+
+#timer {
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    padding: 10px;
+    background-color:  #E7EA18;
+
 }
 
 .answerBtn {
     margin: 10px;
     padding: 10px;
+    border-radius: 20px;
+    background-color: #42BAE7;
 }
 
 .hide {
@@ -24,3 +46,11 @@ header {
 
 }
 
+.highScoresBox {
+    text-align: center;
+}
+
+ol {
+    margin: 0 auto;
+    width: 40vw;
+}

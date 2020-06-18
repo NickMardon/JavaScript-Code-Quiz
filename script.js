@@ -10,6 +10,8 @@ var tryAgain = document.querySelector("#tryAgain");
 var rightOrWrong = document.querySelector(".wrongCorrect");
 var highScoresList = document.querySelector(".highscoreList");
 var highScoresBox = document.querySelector(".highScoresBox");
+var highScoreBtn = document.querySelector("#highScore");
+var playAgain = document.querySelector("#playAgainBtn");
 // var showHighScore = document.querySelector("#showHighScores");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
@@ -25,10 +27,16 @@ var timeLeft = 90;
 var userArray = JSON.parse(localStorage.getItem("userScore")) || [];
 // var userArray = [];
 var savedScores = JSON.parse(localStorage.getItem("userScore")) || [];
-
+//display scores variables
 var displayUserScore;
 var displayLi;
 
+//view high score button
+highScoreBtn.addEventListener("click", function(){
+  startBtn.classList.add("hide");
+  gameOver();
+  saveScores();
+})
 
 //add click listener to start button to start quiz
 startBtn.addEventListener("click", startQuiz);
@@ -92,7 +100,7 @@ function generateQuestion(){
 //Checks if answer was right and moves to next question
 function goToNextQuestion(userChoice){
     // debugger;
-    console.log("goToNextQuestion has been called");
+    rightOrWrong.classList.remove("hide");
     var correctAnswer = questionArr[index].correct;
     if(userChoice == correctAnswer){
         confirmAnswer.textContent = "Correct";
@@ -105,7 +113,7 @@ function goToNextQuestion(userChoice){
     
     if(userChoice !== correctAnswer){
         confirmAnswer.textContent = "False";
-        // timeLeft = timeLeft - 5;
+        timeLeft = timeLeft - 5;
         index = index + 1;
         console.log("index is " + index);
         generateQuestion();
@@ -119,6 +127,7 @@ tryAgain.addEventListener("click", resetGame);
 function resetGame(){
     index = 0;
     score = 0;
+    questionText.classList.remove("hide");
     questionText.innerHTML = "Click the start button to begin the quiz"
     submitBox.classList.add("hide");
     startBtn.classList.remove("hide");
@@ -135,38 +144,22 @@ if(submitBtn.clicked === true){
 //Save the users score to local storage
 function saveScores() {
     var scoreName = submitInput.value;
-    console.log(scoreName);
+  //add username and score as properties of an object in an array
     var scoreObj = {};
     scoreObj["name"]=scoreName;
     scoreObj["score"]=score;
-    // var highScores = scoreName + " : " + score;
     userArray.push(scoreObj);
-
     //sort scores from high to low before saving
     userArray.sort(function(a, b){return b.score-a.score}); 
     //save the objects in userArray into local storage
     localStorage.setItem("userScore", JSON.stringify(userArray));
-    //redirect goes here
-    // window.location.href = "highScores.html";
-    highScoresBox.classList.remove("hide");
-    
+    //call show scores to display high scores box
     showScores();
   }
-
-  // //load data from local storage highScores 
-  // function loadScores() {
-  //       //get score object from local storage
-  //     //  savedScores = localStorage.getItem("userScore");
-  //       console.log(savedScore);
-  //       var allScores = JSON.parse(savedScores);
-    
-  //   }
-
-  //click listener to show high scores button
-  // showHighScore.addEventListener("click", showScores)
-
   //  create a new list item for each score and append to ol 
 function showScores() {
+  highScoresBox.classList.remove("hide");
+  submitBox.classList.add("hide");
     for (i = 0; i < userArray.length; i++) {
         var displayUserScore = document.createElement("li");
         displayLi = `${userArray[i].name}-----${userArray[i].score}`;
@@ -174,5 +167,9 @@ function showScores() {
         highScoresList.appendChild(displayUserScore);  
     }
   }
+  //play again button
+playAgain.addEventListener("click", function(){
+  location.reload();
+})
 
   
