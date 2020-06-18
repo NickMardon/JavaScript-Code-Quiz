@@ -14,7 +14,7 @@ var questionArr = [
     },
     {question: "What HTML tag links JavaScript to HTML?",
     answers: ["&lt;script.js&gt;", "&lt;JavaScript&gt;", "&lt;script&gt;", "&lt;Java&gt;"],
-    correct: "&lt;script.js&gt;"
+    correct: "&lt;script&gt;"
     },
     {question: "Which of the following is NOT a JavaScript framework?",
     answers: ["Node.js", "React.js", "Go.js", "Vue.js"],

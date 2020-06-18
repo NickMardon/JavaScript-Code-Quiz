@@ -31,10 +31,14 @@ var displayUserScore;
 var displayLi;
 
 //view high score button
-highScoreBtn.addEventListener("click", function(){
+highScoreBtn.addEventListener("click", function(){ 
+  this.onclick = null;
   startBtn.classList.add("hide");
-  gameOver();
-  saveScores();
+  highScoresBox.classList.remove("hide");
+  questionText.classList.add("hide");
+  rightOrWrong.classList.add("hide");
+  showScores();
+  //fix the code here 
 })
 
 //add click listener to start button to start quiz
@@ -67,7 +71,6 @@ function startTimer() {
     answerButtons.classList.add("hide");
     rightOrWrong.classList.add("hide");
   }
-
 //Generate questions on to HTML
 function generateQuestion(){
     if(index<questionArr.length){
@@ -87,17 +90,14 @@ function generateQuestion(){
     var answerBtn1 = document.querySelector("#answerBtn1");
     var answerBtn2 = document.querySelector("#answerBtn2");
     var answerBtn3 = document.querySelector("#answerBtn3");
-
     // add event listeners to answers
     answerBtn0.addEventListener("click", function() {goToNextQuestion(answerBtn0.innerHTML)});
     answerBtn1.addEventListener("click", function() {goToNextQuestion(answerBtn1.innerHTML)});
     answerBtn2.addEventListener("click", function() {goToNextQuestion(answerBtn2.innerHTML)});
     answerBtn3.addEventListener("click", function() {goToNextQuestion(answerBtn3.innerHTML)});
 
-
 //Checks if answer was right and moves to next question
 function goToNextQuestion(userChoice){
-    // debugger;
     rightOrWrong.classList.remove("hide");
     var correctAnswer = questionArr[index].correct;
     if(userChoice == correctAnswer){

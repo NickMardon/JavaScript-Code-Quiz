@@ -1,4 +1,5 @@
 main {
+    margin-top: 10vh;
     text-align: center;
 }
 
@@ -31,6 +32,7 @@ body {
 #startBtn {
     background-color: #2DCA56;
     border-radius: 10px;
+    margin: 30px;
     padding: 10px;
     font-weight: 600;
 }
@@ -53,7 +55,7 @@ body {
 }
 
 .answerBtn {
-    margin: 10px;
+    margin: 30px 10px;
     padding: 10px;
     border-radius: 10px;
     background-color: #42BAE7;
