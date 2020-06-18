@@ -12,7 +12,6 @@ var highScoresList = document.querySelector(".highscoreList");
 var highScoresBox = document.querySelector(".highScoresBox");
 var highScoreBtn = document.querySelector("#highScore");
 var playAgain = document.querySelector("#playAgainBtn");
-// var showHighScore = document.querySelector("#showHighScores");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
@@ -103,6 +102,7 @@ function goToNextQuestion(userChoice){
     var correctAnswer = questionArr[index].correct;
     if(userChoice == correctAnswer){
         confirmAnswer.textContent = "Correct";
+        confirmAnswer.style.color = "green";
         score = score + 1;
         index = index + 1;
         generateQuestion();
@@ -110,6 +110,7 @@ function goToNextQuestion(userChoice){
     
     if(userChoice !== correctAnswer){
         confirmAnswer.textContent = "False";
+        confirmAnswer.style.color = "red";
         timeLeft = timeLeft - 5;
         index = index + 1;
         generateQuestion();
@@ -157,7 +158,7 @@ function showScores() {
   submitBox.classList.add("hide");
     for (i = 0; i < userArray.length; i++) {
         var displayUserScore = document.createElement("li");
-        displayLi = `${userArray[i].name}:${userArray[i].score}`;
+        displayLi = `${userArray[i].name}---${userArray[i].score}`;
         displayUserScore.innerHTML = displayLi;
         highScoresList.appendChild(displayUserScore);  
     }

@@ -30,7 +30,7 @@ body {
 
 #startBtn {
     background-color: #2DCA56;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 10px;
     font-weight: 600;
 }
@@ -46,7 +46,7 @@ body {
 
 }
 
-#question, #highScoreText {
+#question, #highScoreText, .confirmAnswer, .gameOverText{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 600;
     font-size: 30px;
@@ -55,14 +55,14 @@ body {
 .answerBtn {
     margin: 10px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #42BAE7;
 }
 
 #playAgainBtn { 
     margin: 20px;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #2DCA56;
     font-weight: 600;;
 }
@@ -74,6 +74,22 @@ body {
 
 .highScoresBox {
     text-align: center;
+}
+
+#submitBtn {
+    font-weight: 600;
+    background-color: #2DCA56;
+}
+
+#tryAgain {
+    font-weight: 600;
+    background-color: red;
+}
+
+#submitInput, #submitBtn, #tryAgain {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 ol {
