@@ -5,14 +5,27 @@ main {
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-image: url("https://images.pexels.com/photos/2194062/pexels-photo-2194062.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-position: bottom;
 }
 
 body {
     background-color: #F2F2F2; 
 }
 
+#appTitle {
+    font-family: 'Press Start 2P', cursive;
+    color: whitesmoke;
+    text-shadow: 3px 3px black;
+}
+
 #highScore {
-    padding-top: 0;
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin: 10px;
+    background-color: whitesmoke;
 }
 
 #startBtn {
@@ -25,10 +38,18 @@ body {
 #timer {
     display: flex;
     align-items: center;
-    border: 2px solid black;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 10px;
     padding: 10px;
-    background-color:  #E7EA18;
+    background-color: whitesmoke;
 
+}
+
+#question, #highScoreText {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
 }
 
 .answerBtn {
@@ -38,12 +59,17 @@ body {
     background-color: #42BAE7;
 }
 
-.hide {
-    display: none;
+#playAgainBtn { 
+    margin: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #2DCA56;
+    font-weight: 600;;
 }
 
-#startBtn {
 
+.hide {
+    display: none;
 }
 
 .highScoresBox {
@@ -51,6 +77,11 @@ body {
 }
 
 ol {
-    margin: 0 auto;
+    margin: 10px auto;
+    padding: 25px 50px 25px 100px;
     width: 40vw;
+    border: 1px solid black;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
 }

@@ -71,7 +71,6 @@ function startTimer() {
 
 //Generate questions on to HTML
 function generateQuestion(){
-    // debugger;
     if(index<questionArr.length){
     //display question on page
     questionText.innerHTML = questionArr[index].question;
@@ -105,9 +104,7 @@ function goToNextQuestion(userChoice){
     if(userChoice == correctAnswer){
         confirmAnswer.textContent = "Correct";
         score = score + 1;
-        console.log("score is " + score);
         index = index + 1;
-        console.log("index is " + index);
         generateQuestion();
     } 
     
@@ -115,7 +112,6 @@ function goToNextQuestion(userChoice){
         confirmAnswer.textContent = "False";
         timeLeft = timeLeft - 5;
         index = index + 1;
-        console.log("index is " + index);
         generateQuestion();
     }
 }
@@ -140,7 +136,6 @@ submitBtn.addEventListener("click", saveScores);
 if(submitBtn.clicked === true){
   showScores();
 }
-
 //Save the users score to local storage
 function saveScores() {
     var scoreName = submitInput.value;
@@ -162,7 +157,7 @@ function showScores() {
   submitBox.classList.add("hide");
     for (i = 0; i < userArray.length; i++) {
         var displayUserScore = document.createElement("li");
-        displayLi = `${userArray[i].name}-----${userArray[i].score}`;
+        displayLi = `${userArray[i].name}:${userArray[i].score}`;
         displayUserScore.innerHTML = displayLi;
         highScoresList.appendChild(displayUserScore);  
     }
