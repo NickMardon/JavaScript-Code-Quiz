@@ -9,7 +9,8 @@ var submitBtn = document.querySelector("#submitBtn");
 var tryAgain = document.querySelector("#tryAgain");
 var rightOrWrong = document.querySelector(".wrongCorrect");
 var highScoresList = document.querySelector(".highscoreList");
-var showHighScore = document.querySelector("#showHighScores");
+var highScoresBox = document.querySelector(".highScoresBox");
+// var showHighScore = document.querySelector("#showHighScores");
 //Answer Buttons
 var answerButtons = document.querySelector(".answers");
 var answerBtn0 = document.querySelector("#answerBtn0");
@@ -146,7 +147,10 @@ function saveScores() {
     //save the objects in userArray into local storage
     localStorage.setItem("userScore", JSON.stringify(userArray));
     //redirect goes here
-    window.location.href = "highScores.html";
+    // window.location.href = "highScores.html";
+    highScoresBox.classList.remove("hide");
+    
+    showScores();
   }
 
   // //load data from local storage highScores 
